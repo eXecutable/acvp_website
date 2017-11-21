@@ -47,6 +47,7 @@
         font-variant: normal;
         text-transform: none;
         line-height: 1;
+        font-size: 20;
 
         /* Better Font Rendering =========== */
         -webkit-font-smoothing: antialiased;
@@ -90,8 +91,37 @@
   <body bgcolor=white>
 
 	<script src="/TimelineJS3/build/js/timeline.js"></script>
+  <script type="text/javascript">
+    function key_down(e) {
+      if(e.keyCode === 13) {
+        filter(document.getElementById("filterTextBox").value);
+      }
+    }
 
-	<div id='timeline-embed' style="width: 100%; height: 600px"></div>
+    function filter(text){
+      if (text && text.match(/\S/)) { //non empty string
+        document.getElementById("filterTextBox").value = text;
+        
+        document.timeline.hideText(text);
+      }
+      else {
+        document.getElementById("filterTextBox").value = "";
+        document.timeline.unhideAll();
+      }
+    }
+  </script>
+
+  <div style="width: 100%; height: 80px">
+    <span><label>Filtro:</label><input id="filterTextBox" type="text" onkeydown="key_down(event)"></span>
+    <span><button style="background-color: grey;" onclick="filter('Steam');">Steam</button></span>
+    <span><button style="background-color: blue;" onclick="filter('Playstation');">Playstation</button></span>
+    <span><button style="background-color: green;" onclick="filter('Android');">Android</button></span>
+    <span><button onclick="filter('');">Clear</button></span>
+  </div>
+	
+  <div id='timeline-embed' style="width: 100%; height: 600px"></div>
+
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdl2wr6YE17hZLSpDZuOcqAmAzo3g-a1fJ5oUanDq0w17hPKw/viewform?embedded=true" width="100%" height="1000px" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 
 	<!-- 3 -->
 	<script type="text/javascript">
@@ -107,12 +137,10 @@
 	// and the element must have CSS styling to give it width and height
 	// optionally, a third argument with configuration options can be passed.
 	// See below for more about options.
-	let timeline = new TL.Timeline('timeline-embed',
+	 document.timeline = new TL.Timeline('timeline-embed',
 	  './data/videojogos_TLjson.json',
 	   additionalOptions);
 	</script>
-
-   <!-- <iframe src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1SxtPQvuaL273uVJGydEHC4CVR8i5dF21AjHl0IZQ8Kg&font=Default&lang=pt&start_at_end=true&hash_bookmark=true&initial_zoom=2&height=650' width='100%' height='650' webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder='0'></iframe> -->
 
   </body>
 </html>
