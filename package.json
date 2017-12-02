@@ -1,0 +1,14 @@
+{
+  "name": "ACVP_website",
+  "version": "1.0.0",
+  "description": "A website to list all portuguese games",
+  "main": "index.html",
+  "repository": "https://github.com/eXecutable/acvp_website.git",
+  "author": "eXecutable <zeratul.exe@gmail.com>",
+  "license": "MPL-2.0",
+  "private": false,
+  "dependencies": {
+    "TimelineJS3": "https://github.com/eXecutable/TimelineJS3",
+    "fablib": "https://github.com/srid/fablib"
+  }
+}

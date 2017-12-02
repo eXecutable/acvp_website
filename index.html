@@ -7,143 +7,199 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!-- CSS-->
-    <link rel="stylesheet" href="/TimelineJS3/build/css/timeline.css?v1">
-    <!--FONT
-    <link rel="stylesheet" href="/TimelineJS3/compiled/css/fonts/font.default.css?v1">
-    -->
+    <link href="/build/css/timeline.css?v1" rel="stylesheet" >
+    <link href="/css/tabs.css?v1" rel="stylesheet">
+    <!--FONT-->
+    <link href="build/css/fonts/font.default.css?v1" rel="stylesheet">
+    <link href="/css/icons/style.css?v1" rel="stylesheet">
     
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
     <!-- Style-->
     <style>
-      html, body {
-      	height:100%;
-      	width:100%;
-      	padding: 0px;
-      	margin: 0px;
+      #filterTextBox{
+        display: inline-block;
       }
-      .tl-timeline {
-      	
-      }
+
       h3.tl-headline-date {
       	display: none;
       }
-      
-      @font-face {
-        font-family: 'gameplatforms';
-        src:  url('css/icons/fonts/gameplatforms.eot?22pgnq');
-        src:  url('css/icons/fonts/gameplatforms.eot?22pgnq#iefix') format('embedded-opentype'),
-          url('css/icons/fonts/gameplatforms.ttf?22pgnq') format('truetype'),
-          url('css/icons/fonts/gameplatforms.woff?22pgnq') format('woff'),
-          url('css/icons/fonts/gameplatforms.svg?22pgnq#gameplatforms') format('svg');
-        font-weight: normal;
-        font-style: normal;
-      }
 
-      [class^="acvp-icon-"], [class*=" acvp-icon-"] {
-        /* use !important to prevent issues with browser extensions that change fonts */
-        font-family: 'gameplatforms' !important;
-        speak: none;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-        font-size: 20;
-
-        /* Better Font Rendering =========== */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      .acvp-icon-brand:before {
-        content: "\e900";
-      }
-      .acvp-icon-brand2:before {
-        content: "\e901";
-      }
-      .acvp-icon-brand3:before {
-        content: "\e902";
-      }
-      .acvp-icon-brand4:before {
-        content: "\e903";
-      }
-      .acvp-icon-playstation:before {
-        content: "\e903";
-      }
-      .acvp-icon-mouse:before {
-        content: "\e904";
-      }
-      .acvp-icon-mobile2:before {
-        content: "\e959";
-      }
-      .acvp-icon-steam2:before {
-        content: "\eaad";
-      }
-      .acvp-icon-appleinc:before {
-        content: "\eabe";
-      }
-      .acvp-icon-android:before {
-        content: "\eac0";
-      }
-
-
+      section.text-content-width > h1 { font-family: 'Lato', Arial, sans-serif; line-height: 1.25; margin: 0 0 10px; font-size: 40px; font-weight: bold; }
+      section.text-content-width > h2 { font-family: 'Lato', Arial, sans-serif; line-height: 1.25; margin: 0 0 10px; font-size: 22px; font-weight: bold; }
+      section.text-content-width > p { color: #333333; font-family: "Lato",Arial,sans-serif; font-size: 16px; font-weight: 300; line-height: 1.5625; margin-bottom: 15px; }
+      .standout-text { border-style: solid; border-color: #cccccc; text-align:center; color: #cc4411; font-size: 32px; font-family: "Helvetica Neue",Arial,sans-serif; }
   	</style>
   </head>
-  <body bgcolor=white>
+  <body>
 
-	<script src="/TimelineJS3/build/js/timeline.js"></script>
-  <script type="text/javascript">
-    function key_down(e) {
-      if(e.keyCode === 13) {
-        filter(document.getElementById("filterTextBox").value);
+    
+    <script src="build/js/timeline.js"></script>
+    <script type="text/javascript">
+      function key_down(e) {
+        if(e.keyCode === 13) {
+          filter(document.getElementById("filterTextBox").value);
+        }
       }
-    }
 
-    function filter(text){
-      if (text && text.match(/\S/)) { //non empty string
-        document.getElementById("filterTextBox").value = text;
+      function filter(text){
+        if (text && text.match(/\S/)) { //non empty string
+          document.getElementById("filterTextBox").value = text;
+          
+          document.timeline.hideText(text);
+        }
+        else {
+          document.getElementById("filterTextBox").value = "";
+          document.timeline.unhideAll();
+        }
+      }
+      
+      function tabTo(name) {
+          var i;
+          var x = document.getElementsByTagName("section"); //TODO: move to init
+          for (i = 0; i < x.length; i++) {
+              x[i].style.display = "none"; 
+          }
+          document.getElementById(name).style.display = "block"; 
+      }
+
+    </script>
+
+
+    <main>
+      <nav role="navigation" class="text-content-width">
+        <a href="/index.html"> <img id="logo" src="/img/CVP_Horizontal_Color.png"/> </a>
+        <input id="tab1" type="radio" name="tabs" checked onclick="tabTo('content1');">
+        <label for="tab1">Linha do Tempo</label>
+          
+        <input id="tab2" type="radio" name="tabs" onclick="tabTo('content2');">
+        <label for="tab2">Outros</label>
+          
+        <input id="tab3" type="radio" name="tabs" onclick="tabTo('content3');">
+        <label for="tab3">Sobre Nós</label>
+          
+        <input id="tab4" type="radio" name="tabs" onclick="tabTo('content4');">
+        <label for="tab4">Contactos</label>
+      </nav>
+      <section id="content1">
+         <div style="width: 100%; height: 40px">
+          <span><label>Filtro:</label><input id="filterTextBox" type="text" onkeydown="key_down(event)"></span>
+          <span><button style="background-color: #AAAAAA;" onclick="filter('Steam');">Steam</button></span>
+          <span><button style="background-color: #a4c639;" onclick="filter('Android');">Android</button></span>
+          <span><button style="background-color: #8e8e93;" onclick="filter('iOS iPhone iPad');">iOS</button></span>
+          <span><button style="background-color: #AAAAAA;" onclick="filter('Mobile iOS Android');">Mobile</button></span>
+          <span><button style="background-color: #3377CC;" onclick="filter('Playstation');">Playstation</button></span>
+          <span><button style="background-color: #107c10;" onclick="filter('XBox');">XBox</button></span>
+          <span><button onclick="filter('');">Clear</button></span>
+        </div>
         
-        document.timeline.hideText(text);
-      }
-      else {
-        document.getElementById("filterTextBox").value = "";
-        document.timeline.unhideAll();
-      }
-    }
-  </script>
+        <div id='timeline-embed' style="width: 100%; height: 700px"></div>
 
-  <div style="width: 100%; height: 80px">
-    <span><label>Filtro:</label><input id="filterTextBox" type="text" onkeydown="key_down(event)"></span>
-    <span><button style="background-color: #AAAAAA;" onclick="filter('Steam');">Steam</button></span>
-    <span><button style="background-color: #a4c639;" onclick="filter('Android');">Android</button></span>
-    <span><button style="background-color: #8e8e93;" onclick="filter('iOS');">iOS</button></span>
-    <span><button style="background-color: #AAAAAA;" onclick="filter('Mobile iOS Android');">Mobile</button></span>
-    <span><button style="background-color: #3377CC;" onclick="filter('Playstation');">Playstation</button></span>
-    <span><button style="background-color: #107c10;" onclick="filter('XBox');">XBox</button></span>
-    <span><button onclick="filter('');">Clear</button></span>
-  </div>
-	
-  <div id='timeline-embed' style="width: 100%; height: 600px"></div>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdl2wr6YE17hZLSpDZuOcqAmAzo3g-a1fJ5oUanDq0w17hPKw/viewform?embedded=true" width="100%" height="2900px" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+      </section>
+        
+      <section id="content2" class="text-content-width">
+        <p>
+        Aqui podes encontrar alguns websites em prol de um objectivo comum: divulgar videojogos portugueses!
 
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdl2wr6YE17hZLSpDZuOcqAmAzo3g-a1fJ5oUanDq0w17hPKw/viewform?embedded=true" width="100%" height="1000px" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+        Websites semelhantes ao nosso:
+        <ol>
+          <li><del><a href="http://www.jogostugas.com/" target="_blank" rel="noopener">http://www.jogostugas.com/</a></del> Deixou de existir.</li>
+        </ol>
+         
 
-	<!-- 3 -->
-	<script type="text/javascript">
+        Notícias sobre videojogos em geral, mas com algumas nomeações de jogos portugueses:
+        <ol>
+          <li><a href="http://appsportugal.com/categoria/jogos" target="_blank" rel="noopener">http://appsportugal.com/categoria/jogos</a></li>
+          <li><a href="http://www.revistapushstart.com/" target="_blank" rel="noopener">http://revistapushstart.com/</a> com uma edição exclusiva a videojogos portugueses: <a href="http://revistapushstart.com/2013/03/04/pushstart-no30-marco-de-2013/" target="_blank" rel="noopener">http://revistapushstart.com/2013/03/04/pushstart-no30-marco-de-2013/</a></li>
+          <li><del>http://www.bgamer.pt/</del></li>
+          <li><del>http://mana.pt/category/made-in-pt/</del></li>
+          <li><del>http://gameover.sapo.pt/</del></li>
+          <li><del>http://geektuga.info/ </del></li>
+        </ol>
+        Sociedade Portuguesa de Ciências dos Videojogos - Informação sobre eventos relacionados com os videojogos portugueses e contém, provavelmente, a lista mais completa de videojogos portugueses feitos até agora:
+        <ol>
+          <li><a href="http://www.spcvideojogos.org/" target="_blank" rel="noopener">http://www.spcvideojogos.org/</a></li>
+        </ol>
+      </section>
+        
+      <section id="content3" class="text-content-width">
+        <h1>
+          Missão
+        </h1>
+        <h2>
+          "A Casa dos Videojogos Portugueses" tem como principal objectivo promover o que se faz de videojogos em terreno português.
+        </h2>
+        <p>
+          Sem querer tirar mérito aos que estão lá fora a representar Portugal! Que muito provavelmente já são reconhecidos globalmente e têm os seus videojogos anunciados em revistas e/ou em páginas da internet das grandes imprensas internacionais da indústria de videojogos.
+        </p>
+        <p>
+          Esta página fará os possíveis para que <strong>todos</strong> os videojogos criados em Portugal sejam listados e apresentados ao público!
+        </p>
+        <p>
+          Tentamos procurar nos confins da internet, nas linhas de amizade, nas páginas amarelas e até mesmo na lua... por videojogos criados em Portugal e se fazes parte desta "casa" e não tens aqui o teu videojogo anunciado, ajuda-nos a tratar do teu "quarto" e adiciona a informação do teu videojogo.
+        </p>
+        <p>
+          Além do jogo ter sido elaborado em Portugal, existe apenas um requisito: nomeadamente o videojogo <strong>tem que estar disponível</strong>, seja <em>online</em> ou numa estante de uma loja, independentemente se é gratuito ou pago.
+        </p>
+        <h2>Fundadores</h2>
+        <p>
+          Bruno "uPerdido" Correia
+        </p>
+        <p>
+          Jorge "eXe_cutable" Graça
+        </p>
 
-		let additionalOptions = {
-              start_at_end: true,
-              duration: 500
-            }
-	// The TL.Timeline constructor takes at least two arguments:
-	// the id of the Timeline container (no '#'), and
-	// the URL to your JSON data file or Google spreadsheet.
-	// the id must refer to an element "above" this code,
-	// and the element must have CSS styling to give it width and height
-	// optionally, a third argument with configuration options can be passed.
-	// See below for more about options.
-	 document.timeline = new TL.Timeline('timeline-embed',
-	  './data/videojogos_TLjson.json',
-	   additionalOptions);
-	</script>
+        <h2>Colaboradores</h2>
+        <p>
+          Hugo "silvaugo" Silva - Se há coisa que gosta é de "aguentar" as suas necessidades, enquanto joga um dos muitos jogos nacionais.
+        </p>
+        <p>
+          Vasco "Deus" Henriques - Sim, Deus. Depois de muitas preces temos finalmente O Deus, que cria divinos artigos sobre o que há de mais divino: Videojogos Portugueses.
+        </p>
+        <p>
+          Paulo "pfrt" Rodrigues - Com idade para ter juízo e cuidar da família não perdoa um bom jogo português, a maior parte das vezes até os prefere às chouriças.
+        </p>
+        <h3 class="standout-text">
+          Isto é tudo voluntário, se quiseres ajudar contacta-nos!
+        </h3>
+ 
+      </section>
+        
+      <section id="content4"  class="text-content-width">
+        <p>
+          Para correcções, sugestões, opiniões, colaborações e outras coisas que acabem em "ões" entra em contacto connosco!
+
+          <strong>Email:</strong> <a href="mailto:acasadosvideojogos@gmail.com" target="_blank">acasadosvideojogos@gmail.com</a>
+          <strong>Slack:</strong> <a href="https://ptgamedev.slack.com/messages/acasa/" target="_blank">https://ptgamedev.slack.com/messages/acasa/</a>
+        </p>
+      </section>
+        
+
+       
+    </main>
+
+  	<!-- 3 -->
+  	<script type="text/javascript">
+      tabTo('content1');
+  		let additionalOptions = {
+                start_at_end: true,
+                duration: 500,
+                //height: 800,
+                timenav_height_min: 250,
+                marker_height_min: 32,
+                timenav_position: "bottom"
+              };
+  	// The TL.Timeline constructor takes at least two arguments:
+  	// the id of the Timeline container (no '#'), and
+  	// the URL to your JSON data file or Google spreadsheet.
+  	// the id must refer to an element "above" this code,
+  	// and the element must have CSS styling to give it width and height
+  	// optionally, a third argument with configuration options can be passed.
+  	// See below for more about options.
+  	 document.timeline = new TL.Timeline('timeline-embed', './data/videojogos_TLjson.json', additionalOptions);
+  	</script>
 
   </body>
 </html>

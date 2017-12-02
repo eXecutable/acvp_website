@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'gameplatforms';
-  src:  url('fonts/gameplatforms.eot?22pgnq');
-  src:  url('fonts/gameplatforms.eot?22pgnq#iefix') format('embedded-opentype'),
-    url('fonts/gameplatforms.ttf?22pgnq') format('truetype'),
-    url('fonts/gameplatforms.woff?22pgnq') format('woff'),
-    url('fonts/gameplatforms.svg?22pgnq#gameplatforms') format('svg');
+  src:  url('fonts/gameplatforms.eot?me7cyk');
+  src:  url('fonts/gameplatforms.eot?me7cyk#iefix') format('embedded-opentype'),
+    url('fonts/gameplatforms.ttf?me7cyk') format('truetype'),
+    url('fonts/gameplatforms.woff?me7cyk') format('woff'),
+    url('fonts/gameplatforms.svg?me7cyk#gameplatforms') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -57,4 +57,7 @@
 }
 .acvp-icon-android:before {
   content: "\eac0";
+}
+.acvp-icon-book:before {
+  content: "\e91f";
 }

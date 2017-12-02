@@ -1,0 +1,75 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+body {
+  margin: unset;
+}
+
+
+nav p {
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+section {
+  display: none;
+  border-top: 1px solid #ddd;
+}
+
+input {
+  display: none;
+}
+
+nav label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 23px;
+  font-weight: 1000;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+nav label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+nav label[for*='1']:before { content: '\f073'; }
+label[for*='2']:before { content: '\f0c1'; }
+label[for*='3']:before { content: '\f0c0'; }
+label[for*='4']:before { content: '\f198'; }
+
+nav label:hover {
+  color: #888;
+  cursor: pointer;
+}
+
+nav input:checked + label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid #006600;
+  border-bottom: 1px solid #fff;
+}
+
+#logo {
+  max-height: 100%;
+  max-width: 189px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+nav a {
+  text-decoration: unset;
+}
+
+nav {
+  /*height: 37px;*/
+  text-align:center;
+}
+
+.text-content-width {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
