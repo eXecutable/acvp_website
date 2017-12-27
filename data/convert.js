@@ -22,8 +22,10 @@ http.get(url, function(res){
         var videojogos_googlejson = JSON.parse(body);
         var finalObj = TL.ConfigFactory.googleFeedJSONtoTimelineJSON(videojogos_googlejson);
 		var finaljson = JSON.stringify(finalObj);
-		fs.writeFile('videojogos_TLjson.json', finaljson, 'utf8', null);
-    });
-}).on('error', function(e){
+		fs.writeFile('videojogos_TLjson.json', finaljson, 'utf8',  (err) => {
+  			if (err) throw err;
+  			console.log('The file has been saved!');});
+    	});
+	}).on('error', function(e){
       console.log("Got an error: ", e);
 });
