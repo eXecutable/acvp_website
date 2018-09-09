@@ -1,5 +1,5 @@
 {
-  "name": "ACVP_website",
+  "name": "acvp_website",
   "version": "1.0.0",
   "description": "A website to list all portuguese games",
   "main": "index.html",
@@ -9,6 +9,14 @@
   "private": false,
   "dependencies": {
     "TimelineJS3": "https://github.com/eXecutable/TimelineJS3",
-    "fablib": "https://github.com/srid/fablib"
+	"express": "^4.16.3",
+	"fablib": "https://github.com/srid/fablib",
+    "mysql": "^2.16.0"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "devDependencies": {
+    "webpack": "^3.10.0"
   }
 }

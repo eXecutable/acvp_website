@@ -148,7 +148,8 @@
         <p>
           <h3>Associações</h3>
           <ol>
-            <li><a href="http://www.spcvideojogos.org/" target="_blank" rel="noopener">Sociedade Portuguesa de Ciências dos Videojogos</a></li>
+			<li><a href="http://www.spcvideojogos.org/" target="_blank" rel="noopener">Sociedade Portuguesa de Ciências dos Videojogos</a></li>
+			<li><a href="http://aepdv.pt/" target="_blank" rel="noopener">Associação das Empresas Produtoras e distribuidoras de videojogos</a></li>
             <li><del><a href="http://www.aproje.org/" target="_blank" rel="noopener">APROJE</a></del></li>
           </ol>
         </p>
@@ -234,25 +235,24 @@
        
     </main>
 
-  	<!-- 3 -->
   	<script type="text/javascript">
-      tabTo('content1');
+		tabTo('content1');
   		let additionalOptions = {
-                start_at_end: true,
-                duration: 500,
-                //height: 800,
-                timenav_height_min: 250,
-                marker_height_min: 32,
-                timenav_position: "bottom"
-              };
-  	// The TL.Timeline constructor takes at least two arguments:
-  	// the id of the Timeline container (no '#'), and
-  	// the URL to your JSON data file or Google spreadsheet.
-  	// the id must refer to an element "above" this code,
-  	// and the element must have CSS styling to give it width and height
-  	// optionally, a third argument with configuration options can be passed.
-  	// See below for more about options.
-  	 document.timeline = new TL.Timeline('timeline-embed', './data/videojogos_TLjson.json', additionalOptions);
+			start_at_end: true,
+			duration: 500,
+			//height: 800,
+			timenav_height_min: 250,
+			marker_height_min: 32,
+			timenav_position: "bottom"
+		};
+		// The TL.Timeline constructor takes at least two arguments:
+		// the id of the Timeline container (no '#'), and
+		// the URL to your JSON data file or Google spreadsheet.
+		// the id must refer to an element "above" this code,
+		// and the element must have CSS styling to give it width and height
+		// optionally, a third argument with configuration options can be passed.
+		// See below for more about options.
+		document.timeline = new TL.Timeline('timeline-embed', './data/videojogos_TLjson.json', additionalOptions);
   	</script>
 
   </body>

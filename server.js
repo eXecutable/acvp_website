@@ -1,35 +1,39 @@
-var http = require("http"),
-    url = require("url"),
-    path = require("path"),
-    fs = require("fs"),
-    port = process.argv[2] || 8888;
 
-http.createServer(function(request, response) {
+var express = require('express');
+var app = express();
 
-  var uri = url.parse(request.url).pathname
-    , filename = path.join(process.cwd(), uri);
 
-  fs.exists(filename, function(exists) {
-    if(!exists) {
-      response.writeHead(404, {"Content-Type": "text/plain"});
-      response.write("404 Not Found\n");
-      response.end();
-      return;
-    }
+var mysql = require('mysql');
 
-    if (fs.statSync(filename).isDirectory()) filename += '/index.html';
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "jorge_read",
+  password: "_Eqrk223",
+  database: "jorgegraca_casadosjogos"
+});
 
-    fs.readFile(filename, "binary", function(err, file) {
-      if(err) {        
-        response.writeHead(500, {"Content-Type": "text/plain"});
-        response.write(err + "\n");
-        response.end();
-        return;
-      }
 
-      response.writeHead(200);
-      response.write(file, "binary");
-      response.end();
-    });
-  });
-}).listen(parseInt(port, 10));
+app.use(express.static('./'));//TODO: change to dist directory
+
+app.get('/', function (req, res) {
+	con.connect(function(err) {
+		if (err) throw err;
+		console.log("Connected!");
+		con.query("SELECT * FROM videojogos", function (err, result, fields) {
+			if (err) throw err;
+			console.log(result);
+			res.send(result)
+		});
+	});
+})
+
+
+
+
+var server = app.listen(8888, function () {
+
+    var host = server.address().address
+    var port = server.address().port
+    console.log('Express app listening at http://%s:%s', host, port)
+
+});
