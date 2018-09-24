@@ -43,7 +43,7 @@ app.get('/search', function (req, res) {
 					if (element.icone) {
 						bodyText = "<img src='" + element.icone + "' style='max-height:160px; max-width:400px;'>";
 					}
-					bodyText += "<p>Developer: <a href='" + element.site + "' target='_blank'>" + element.estudio + "</a></p>";
+					bodyText += "<p>Developer: <a href='" + element.site + "' target='_blank' rel='noopener'>" + element.estudio + "</a></p>";
 					bodyText += "<p>Plataforma(s): " + element.plataformas + "</p>";
 					bodyText += "<p>Preço: " + element.preco + "</p>";
 
